@@ -42,3 +42,32 @@ var x ={
     c:["HI","BYE","GOODBYE"],
 }
 console.log(x.c[2]);
+
+
+let fruits = ["Apples", "Pear", "Orange"];
+
+
+let shoppingCart = fruits;
+shoppingCart.push("Banana");
+
+// what's in fruits?
+console.log(fruits);
+
+var styles =["Jazz","Blues"]
+styles.push("Rock-n-roll")
+styles[Math.floor((styles.length-1)/2)]= "Classics";
+console.log(styles);
+styles.shift();
+console.log(styles);
+styles.unshift("Rap","Raggae");
+console.log(styles);
+
+//Splice
+console.log(arr);
+arr.splice(1,1)
+
+arr.splice(0,3,"hi","insane shit")
+console.log(arr);
+
+
+
