@@ -70,4 +70,23 @@ arr.splice(0,3,"hi","insane shit")
 console.log(arr);
 
 
+let user={
+    name: "HI",
+    age: 23,
+
+}
+
+user["Likes bitches"]=true;
+
+let key = "Likes bitches";
+
+console.log(user[key]);
+
+
+
+
+
+
+
+
 
