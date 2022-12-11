@@ -62,14 +62,14 @@ console.log(str+str2);
 console.log(str.toUpperCase());
 console.log(str.toLowerCase());
 //str.split(".")
-//str.join("") --> Joins an array and convert it into a string with whatever character you gove in between.
+//str.join("") --> Joins an array and convert it into a string with whatever character you gave in between.
 
 
 
 
 
 //Assignment... Build CLI for IPv4.
-//
+
 //There are methods which only work on arrays and not strings.
 
 //Take input from user as a String and check if it's a valid input or not.
@@ -77,7 +77,13 @@ console.log(str.toLowerCase());
 //And also determine if it is private or public.
 //Bonus--> Object comparision.
 //Bonus-->Build the CLI for IPv6.
+
 //Assignment....Generating an array of predefined length
+
+
+
+
+
 
 let ip = "192.168.0.130";
 let segregatedip = ip.split(".");

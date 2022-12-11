@@ -81,6 +81,8 @@ user["Likes bitches"]=true;
 let key = "Likes bitches";
 
 console.log(user[key]);
+//Prime number
+
 
 
 
