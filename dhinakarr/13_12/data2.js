@@ -1,4 +1,4 @@
-var data = 
+var data =  //Array of objects.
 [
     {
       "id": 1,
@@ -232,6 +232,8 @@ var data =
     }
   ]
 
+  //console.log(data);
+
 
   var filteredData=new Array;
 
@@ -245,8 +247,7 @@ var data =
    filteredData.push(obj);
 })
 
-
-console.log(filteredData);
+//console.log(filteredData);
 
 
 //Map is used for overriding or modifying...(Adding properties to an object.)
@@ -261,11 +262,80 @@ var mapData = data.map((ele)=>{
 
 // If you want to override or modify data...
 
-data = data.map((ele)=>{
-    return{
-        name: ele.name,
-        company_name:ele.company.name
-    }
-})
+// data = data.map((ele)=>{
+//     return{
+//         name: ele.name,
+//         company_name:ele.company.name
+//     }
+// })
 
+
+
+//If name of the employee starts with a vowell, create a new array and push it into that.
+//Using array helper methods.
+
+var newshit = data.map((ele)=>{
+    var obj ={
+        name: ele.name,
+        company_name:ele.company,
+    }
+
+    return obj;
+});
+
+//console.log(newshit)
+
+/*
+{
+      "id": 10,
+      "name": "Clementina DuBuque",
+      "username": "Moriah.Stanton",
+      "email": "Rey.Padberg@karina.biz",
+      "address": {
+        "street": "Kattie Turnpike",
+        "suite": "Suite 198",
+        "city": "Lebsackbury",
+        "zipcode": "31428-2261",
+        "geo": {
+          "lat": "-38.2386",
+          "lng": "57.2232"
+        }
+      },
+*/
+
+
+/* 
+data.forEach((ele)=>{
+  
+    var obj = {
+        name: ele.name,
+        cname: ele.company.name
+    }
+
+   filteredData.push(obj);
+})
+*/
+
+function Namechecker(element){
+  if(element.name.charAt(0)=="A"||element.name.charAt(0)=="P"||element.name.charAt(0)=="E"||element.name.charAt(0)=="I"||element.name.charAt(0)=="O"||element.name.charAt(0)=="U")
+  {
+    return false;
+  }
+
+}
+var y = new Array;
+var x = data.map(
+  (element)=>{
+
+    if(Namechecker(element)==false){
+      y.push(element);
+      return element;
+    }
+
+  }
+);
+
+
+
+console.log(y)
 
