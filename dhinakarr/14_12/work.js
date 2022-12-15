@@ -36,3 +36,17 @@ console.log(doCount());
 console.log(doCount());
 console.log(doCount());
 console.log(doCount());
+
+
+
+//500
+// Terneray operators. Used in react.
+
+function getResult(bool1,bool2){
+    return bool1 || bool2 ? `One or more` : `neither`;
+}
+
+console.log(getResult(false,false));
+
+//Learn Date class.
+
