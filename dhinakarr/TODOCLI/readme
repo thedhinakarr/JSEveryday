@@ -1,0 +1,81 @@
+Documentation for the TODO CLI.
+
+Consists of a JSON file with an array of objects.
+
+Each user will be having a specific object, And there will be a nested to-do object in each user object.
+
+We will get into the specifics later.
+
+We will be using filesystems in JS to help us with the input and output.
+
+Promises will be used all along the program Be aware,will be needing good understanding async processes.
+
+WHAT THE CLI DOES:
+1.User Registration
+2.User Login 
+3.Delete User
+
+What the TODO DOES:
+1.Insert Todo
+2.Edit Todo 
+3.Delete Todo
+4.View Todos
+
+
+--------------------X--------------------------------------------
+
+1---->Revisiting the FileSystem module in js
+
+import fs from 'fs/promises'. This promises version makes our life easy. So try not using this.
+
+Two methods we will be using:
+ 
+    1. fs.readFile("Filename",function(err,data){
+        if(err){ throw err}
+        else //Do what you want with the fucking data.
+    })
+
+    
+    2. fs.writeFile("Filename","encoding-standard",function(err){
+
+            if(err){ throw the error }
+
+            else, it means the file has been successfully written with the current data. 
+            You can display a success message or anything. 
+
+            Note only an error is given here , do whatever you want with this.
+
+    })
+
+
+--------------------X--------------------------------------------
+
+File structure---> Pretty evident I guess... Let's move on.
+
+Made keeping sustainability in mind.
+
+App.js is the main driving code.
+
+---------------------X---------------------------------------------
+
+Node Modules:
+
+fs/promises
+chalk
+readline-sync
+
+and mostly other imports, made inter-file(in between files.)
+
+
+--------------------X------------------------------------------------
+
+//Main app.js
+
+
+This app is the main driver code of our CLI,
+it consists of the User Interface.
+
+Each option will take us to various other CLIs specific to their functionality.
+
+
+
