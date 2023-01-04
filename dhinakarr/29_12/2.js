@@ -15,7 +15,9 @@ for(let i=1;i<=10;i++){
 }
 
 console.log(promiseArray);
-//Promise.all is an async process.
+
+//Promise.all is an async process
+
 Promise.all(promiseArray)
     .then((responses)=>{
       responses.forEach((ele)=>{

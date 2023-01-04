@@ -85,7 +85,7 @@ async function registerUser(){
     /* Push this newUser to the data retrieved. */
     fileData.push(newUser)
 
-    console.log(fileData);
+   // console.log(fileData);
   
     await fs.writeFile("data.json",JSON.stringify(fileData))
 }
@@ -93,9 +93,6 @@ catch(err){
     console.log(err);
 }
 }
-
-//
-
 
 //EXPORT THIS THING.
 export default registerUser;

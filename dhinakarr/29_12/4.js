@@ -2,7 +2,6 @@
 //Promise is an async operation
 //.then is used to fullfill it
 //.catch is used for error handling
-
 //Create a Custom Promise for setTimeout.
 
 function experiment(num){

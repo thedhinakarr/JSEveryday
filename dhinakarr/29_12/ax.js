@@ -3,7 +3,6 @@ import readlineSync from "readline-sync";
 import chalk from "chalk";
 //var index= readlineSync.question("Enter the index: ")
 
-
 for(let i =1;i<=10;i++){
     axios.get(`https://jsonplaceholder.typicode.com/users/${i}`
     ).then((res)=>{
@@ -17,6 +16,7 @@ for(let i =1;i<=10;i++){
          console.log("Index exceeded")
      })
 }
+
 
 // function getUsers(){
 //     axios.get(`https://jsonplaceholder.typicode.com/users/`
