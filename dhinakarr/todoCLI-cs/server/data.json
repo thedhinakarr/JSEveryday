@@ -5,14 +5,12 @@
         "email": "adnan@code.in",
         "location": "Hyderabad",
         "password": "Temp@123",
-        "password2": "Temp@123"
-    },
-    {
-        "username": "Dhinakar r",
-        "email": "dhinakar210902@gmail.com",
-        "phone": "+91 9097819999",
-        "location": "Hyderabad",
-        "password": "Temp@123",
-        "password2": "Temp@123"
+        "password2": "Temp@123",
+        "todos": [
+            {
+                "todoName": " blah blah blah",
+                "isTodoCompleted": true
+            }
+        ]
     }
 ]

@@ -7,13 +7,11 @@ let app = express()
 app.post(
   '/user',
   // username must be an email
-
   body('username').isEmail(),
-  // password must be at least 5 chars long
 
+  // password must be at least 5 chars long
   body('password').isLength({ min: 5 }),
 
-  
   (req, res) => {
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(req);

@@ -1,9 +1,8 @@
 import express from "express";
 import fs from "fs/promises"
-import { body, validationResult } from ('express-validator')
-import { userRegistrationValidations, userLoginValidations, errorMiddleware } from "./validations/index.js"
+
 const app = express()
-const port = 6001;
+const port = 6000;
 
 //JSON Body Parser
 app.use(express.json())
@@ -30,7 +29,7 @@ Read Tasks
 */
 
 app.post("/api/register"/* This is the routing path.. Whenever someone uses this path, this method is invoked. */,
-    body('password').isLength({ min: 5 }),
+
     async (req, res) => {
         try {
 
@@ -171,14 +170,14 @@ app.post("/api/register"/* This is the routing path.. Whenever someone uses this
 
 app.post("/api/login", async (req, res) => {
     try {
-        
+
         let fileData = await fs.readFile("data.json")
         /* Reading the the file data from data.json. */
         fileData = JSON.parse(fileData)
         /* Parsing the JSON string to a JSON object to be used in our code */
 
         let emailfound = fileData.find((ele) => {
-            if (ele.email == req.body.email) {
+            if (ele.email === req.body.email) {
                 return ele
             }
         })
@@ -219,7 +218,11 @@ app.post("/api/login", async (req, res) => {
 
         */
 
-        else res.status(200).json({ "success": "LOGGED IN SUCCESSFULLY." })
+        else {
+            res.redirect("/api/createTodo")
+            // res.status(200).json({ "success": "LOGGED IN SUCCESSFULLY." })
+        }
+
         /*
          If everything passes, means the user was successfully authenticated and therefore, 
          the response object's status code is set to 200 and a json object consisting of a success message is
@@ -241,6 +244,106 @@ app.post("/api/login", async (req, res) => {
 
 })
 
+app.post("/api/createTodo", async (req, res) => {
+    console.log("Create todo called.")
+
+    /* 
+    This route will be called only when, the user is logged in,
+    Which means, When this route is called,It is assumed that the request object passed down to this route 
+    contains the email as well as the task to be created in our todolist.
+    */
+
+    try {
+        //OBJECT CONSTRUCTION TO USE IN OUR CODE
+
+       // let { username, phone, email, location, password, password2, todos, createTask } = req.body
+
+        let fileData = await fs.readFile("data.json")
+        fileData = JSON.parse(fileData);
+
+        /* Now find the user in our database to which a new todo will be added to the todo array. */
+
+        let findUser = fileData.find((ele) => {
+            if (ele.email === req.body.email) {
+                return ele
+            }
+        }) //GIVES THE REFERENCE TO THE OBJ WHICH PASSES THE CONDITION. (SHALLOW COPY)
+
+        /* Finding a user using a array helper method. */
+        console.log(findUser)
+
+        /* EDIT THE FOUND USER'S shit */
+
+        findUser.todos.push(req.body.createTask)
+        //HERE WE ASSUME THAT THE REQ BODY's create task object is valid.
+        console.log(findUser)
+        await fs.writeFile("data.json", JSON.stringify(fileData))
+        res.status(200).json({ "message": "Successfully added a new task." })
+
+
+    } catch (error) {
+        console.log((error))
+    }
+
+})
+
+app.post("/api/editTodo",async (req,res)=>{
+    try {
+        let fileData = await fs.readFile("data.json");
+        fileData = JSON.parse(fileData);
+
+        let findUser = fileData.find((ele) => {
+            if (ele.email === req.body.email) {
+                return ele
+            }
+        }) //GIVES THE REFERENCE TO THE OBJ WHICH PASSES THE CONDITION. (SHALLOW COPY)
+
+        /*
+         The request object in this condition,
+         contains a property called edit, which inturn has an object containing: 
+         {
+            ....
+            "edit":{
+                taskIndex: index
+                updatedTaskName: " blah blah blah"
+                isTaskCompleted: true/false
+            }
+
+         }
+         */
+    
+         findUser.todos[req.body.edit.index].todoName = req.body.edit.updatedTaskName
+         findUser.todos[req.body.edit.index].isTodoCompleted = req.body.edit.isTodoCompleted
+
+         console.log(findUser)
+         await fs.writeFile("data.json", JSON.stringify(fileData))
+         res.status(200).json({ "message": "Task successfully edit." })
+ 
+    } catch (error) {
+        console.log(error)
+    }
+
+})
+
+app.get("/api/ViewTodo",async (req,res)=>{
+    try {
+
+        let fileData = await fs.readFile("data.json");
+        fileData = JSON.parse(fileData);
+
+        let findUser = fileData.find((ele) => {
+            if (ele.email === req.body.email) {
+                return ele
+            }
+        }) //GIVES THE REFERENCE TO THE OBJ WHICH PASSES THE CONDITION. (SHALLOW COPY)
+        console.log(findUser)
+        res.send(findUser.todos)
+        console.table(findUser.todo)        
+    } catch (error) {
+        console.log(error)
+    }
+
+})
 
 app.listen(port, () => {
     console.log(`Server Started at port : ${port}`)
