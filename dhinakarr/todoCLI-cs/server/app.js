@@ -6,18 +6,14 @@ const port = 6000;
 
 //JSON Body Parser
 app.use(express.json())
-
 app.get("/", (req, res) => {
     res.send("Todo server route.")
 
 })
 /*
-
 User Signup -Public Post //DONE
 User Login - Public Post //DONE
-
 Private Tasks
-
 ---> ALL THESE TASKS SHOULD HAPPEN AFTER LOGIN <---
 User Deletion 
 Create Task
@@ -25,9 +21,7 @@ Edit task
 Delete Task
 Read Task
 Read Tasks
-
 */
-
 app.post("/api/register"/* This is the routing path.. Whenever someone uses this path, this method is invoked. */,
 
     async (req, res) => {
@@ -346,5 +340,6 @@ app.get("/api/ViewTodo",async (req,res)=>{
 })
 
 app.listen(port, () => {
+
     console.log(`Server Started at port : ${port}`)
 })
