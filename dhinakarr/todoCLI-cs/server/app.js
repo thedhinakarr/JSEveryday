@@ -22,6 +22,7 @@ Delete Task
 Read Task
 Read Tasks
 */
+
 app.post("/api/register"/* This is the routing path.. Whenever someone uses this path, this method is invoked. */,
 
     async (req, res) => {
@@ -336,7 +337,6 @@ app.get("/api/ViewTodo",async (req,res)=>{
     } catch (error) {
         console.log(error)
     }
-
 })
 
 app.listen(port, () => {

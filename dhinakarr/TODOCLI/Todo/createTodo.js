@@ -18,7 +18,7 @@ async function createToDo(email){
        let found = fileData.find(ele => ele.email=== email ) 
        //GIVES THE REFERENCE TO THE OBJ WHICH PASSES THE CONDITION. (SHALLOW COPY)
 
-        //Notice the syntax. FInd takes a condition.
+        //Notice the syntax. Find takes a condition.
         //Returns reference to an object.
         //Now make an adding object.
 
