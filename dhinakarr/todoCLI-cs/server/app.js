@@ -1,9 +1,7 @@
 import express from "express";
 import fs from "fs/promises"
 import { body, validationResult } from ('express-validator')
-
 import { userRegistrationValidations, userLoginValidations, errorMiddleware } from "./validations/index.js"
-
 const app = express()
 const port = 6001;
 
@@ -14,11 +12,10 @@ app.get("/", (req, res) => {
     res.send("Todo server route.")
 
 })
-
 /*
 
-User Signup -Public Post 
-User Login - Public Post
+User Signup -Public Post //DONE
+User Login - Public Post //DONE
 
 Private Tasks
 
@@ -174,9 +171,11 @@ app.post("/api/register"/* This is the routing path.. Whenever someone uses this
 
 app.post("/api/login", async (req, res) => {
     try {
-
+        
         let fileData = await fs.readFile("data.json")
+        /* Reading the the file data from data.json. */
         fileData = JSON.parse(fileData)
+        /* Parsing the JSON string to a JSON object to be used in our code */
 
         let emailfound = fileData.find((ele) => {
             if (ele.email == req.body.email) {
@@ -184,20 +183,62 @@ app.post("/api/login", async (req, res) => {
             }
         })
 
+        /*
+         The emailfound variable, holds the User object whom we are trying to validate.
+         The find returns the object which satisfies the certain condition in the function.
+         In this case, the fileData contains the array of user objects on which the array helper method "find"
+         is used, what this does is goes through the array of user objects until the desired user is found, 
+
+         The cross-checking is done in accordance to the email found in the request object's body.
+
+         NOW the emailfound variable holds the filtered user object if the user is found
+         Else holds undefined if the user object is not found.
+
+        */
+
         if (!emailfound) {
             return res.status(404).json({ "error": "User not found" })
         }
 
+        /*
+        If user is not found, the result object's status is set to 404 
+        and a json object consisting of a message is 
+        Sent in the response.
+        */
+
         if (emailfound.password != req.body.password) {
             return res.status(404).json({ "error": "Wrong password" })
         }
+        /*
+         If the user object is found, but the password 
+         in the request object does not match with the password in the emailfound object,
+         then,
+
+            The response object's status is set to 404 again and a json object 
+            consisting of the error message "wrong Password" is sent to the user.
+
+        */
 
         else res.status(200).json({ "success": "LOGGED IN SUCCESSFULLY." })
+        /*
+         If everything passes, means the user was successfully authenticated and therefore, 
+         the response object's status code is set to 200 and a json object consisting of a success message is
+         sent in the response.
+        */
     }
     catch (err) {
+
         console.log(err);
         res.status(500).json({ "error": "Internal Error" })
+
+        /* If there's an async error, the catch block handles it gracefully, 
+            setting the response status to 500 and sending along a json object with an
+            error message -->
+                    "error":"Internal Error"
+        */
+
     }
+
 })
 
 
